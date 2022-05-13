@@ -12,7 +12,7 @@
 <script setup></script>
 <style lang="scss" scoped>
 .navbar {
-  width: 80%;
+  width: 85%;
   height: 60px;
   overflow: hidden;
   background-color: #fff;

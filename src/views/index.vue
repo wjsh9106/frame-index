@@ -34,6 +34,87 @@
     </ul>
   </div>
 
+  <div class="zhuanti whitebg">
+    <h2 class="htitle">特别推荐</h2>
+    <el-row :gutter="12">
+      <el-col :span="8">
+        <el-card shadow="hover">
+          <a href="#" class="ztpic">
+            <img
+              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+              class="image"
+            />
+          </a>
+          <div style="padding: 14px">
+            <b>2018，创业黄金时代结束的一年</b>
+            <span>222222222222222222</span>
+            <a href="#" target="_blank" class="readmore">文章阅读</a>
+          </div>
+        </el-card>
+      </el-col>
+      <el-col :span="8">
+        <el-card shadow="hover">
+          <a href="#" class="ztpic">
+            <img
+              src="http://ruoyi.wjshlnn.com/profile/upload/article/2019/11/19/99d7e90e2beb8bd825a04922aadc911b.jpg"
+              class="image"
+            />
+          </a>
+          <div style="padding: 14px">
+            <b>一场球，一杯酒，一种陪伴</b>
+            <span>123</span>
+            <a href="#" target="_blank" class="readmore">文章阅读</a>
+          </div>
+        </el-card>
+      </el-col>
+      <el-col :span="8">
+        <el-card shadow="hover">
+          <a href="#" class="ztpic">
+            <img
+              src="http://ruoyi.wjshlnn.com/profile/material/2021/09/23/7796f436-fac1-4de4-ab58-3113bc9cd97f.jpg"
+              class="image"
+            />
+          </a>
+          <div style="padding: 14px">
+            <b>小程序实现轮播图示例</b>
+            <span>小程序实现轮播图示例</span>
+            <a href="#" target="_blank" class="readmore">文章阅读</a>
+          </div>
+        </el-card>
+      </el-col>
+      <el-col :span="8">
+        <el-card shadow="hover">
+          <a href="#" class="ztpic">
+            <img
+              src="http://ruoyi.wjshlnn.com/profile/upload/article/2019/11/19/01dd446f5e232f4a3846efd833d9e599.jpg"
+              class="image"
+            />
+          </a>
+          <div style="padding: 14px">
+            <b>新婚快乐，我的青春。</b>
+            <span>123</span>
+            <a href="#" target="_blank" class="readmore">文章阅读</a>
+          </div>
+        </el-card>
+      </el-col>
+      <el-col :span="8">
+        <el-card shadow="hover">
+          <a href="#" class="ztpic">
+            <img
+              src="http://ruoyi.wjshlnn.com/profile/upload/article/2019/11/18/5f8b080065e77ed1993492561409e3de.jpg"
+              class="image"
+            />
+          </a>
+          <div style="padding: 14px">
+            <b>一场球，一杯酒，一种陪伴</b>
+            <span>123</span>
+            <a href="#" target="_blank" class="readmore">文章阅读</a>
+          </div>
+        </el-card>
+      </el-col>
+    </el-row>
+  </div>
+
   <div class="ad whitebg">
     <el-carousel height="126px">
       <el-carousel-item v-for="item in 4" :key="item">
@@ -44,96 +125,55 @@
     </el-carousel>
   </div>
 
-  <div class="zhuanti whitebg">
-    <h2 class="htitle">特别推荐</h2>
-    <ul>
-      <li>
-        <i class="ztpic">
-          <a title="来，吃个橘子吧" href="/blog/article/9168" target="_blank">
-            <img
-              src="http://ruoyi.wjshlnn.com/profile/upload/article/2019/11/18/fc7d2fca0a12a1092485b2c3f0c995b0.jpg"
-            />
-          </a>
-        </i>
-        <b>来，吃个橘子吧</b>
-        <span>123</span>
-        <a href="/blog/article/9168" target="_blank" class="readmore">
-          文章阅读</a
-        >
-      </li>
-      <li>
-        <i class="ztpic">
-          <a
-            title="新婚快乐，我的青春。"
-            href="/blog/article/9170"
-            target="_blank"
-          >
-            <img
-              src="http://ruoyi.wjshlnn.com/profile/upload/article/2019/11/19/01dd446f5e232f4a3846efd833d9e599.jpg"
-            />
-          </a>
-        </i>
-        <b>新婚快乐，我的青春。</b>
-        <span>123</span>
-        <a href="/blog/article/9170" target="_blank" class="readmore">
-          文章阅读</a
-        >
-      </li>
-      <li>
-        <i class="ztpic">
-          <a
-            title="小程序实现轮播图示例"
-            href="/blog/article/9189"
-            target="_blank"
-          >
-            <img
-              src="http://ruoyi.wjshlnn.com/profile/material/2021/09/23/7796f436-fac1-4de4-ab58-3113bc9cd97f.jpg"
-            />
-          </a>
-        </i>
-        <b>小程序实现轮播图示例</b>
-        <span>小程序实现轮播图示例</span>
-        <a href="/blog/article/9189" target="_blank" class="readmore">
-          文章阅读</a
-        >
-      </li>
-      <li>
-        <i class="ztpic">
-          <a
-            title="一场球，一杯酒，一种陪伴"
-            href="/blog/article/9169"
-            target="_blank"
-          >
-            <img
-              src="http://ruoyi.wjshlnn.com/profile/upload/article/2019/11/19/99d7e90e2beb8bd825a04922aadc911b.jpg"
-            />
-          </a>
-        </i>
-        <b>一场球，一杯酒，一种陪伴</b>
-        <span>123</span>
-        <a href="/blog/article/9169" target="_blank" class="readmore">
-          文章阅读</a
-        >
-      </li>
-      <li>
-        <i class="ztpic">
-          <a
-            title="2018，创业黄金时代结束的一年"
-            href="/blog/article/9164"
-            target="_blank"
-          >
+  <div class="bloglist whitebg">
+    <h2 class="htitle">休闲推荐</h2>
+    <el-timeline>
+      <el-timeline-item timestamp="2018/4/12" placement="top" color="#0bbd87">
+        <el-card shadow="hover">
+          <div style="width: 30%; float: left">
             <img
               src="http://ruoyi.wjshlnn.com/profile/upload/article/2019/11/18/5f8b080065e77ed1993492561409e3de.jpg"
+              class="image"
             />
-          </a>
-        </i>
-        <b>2018，创业黄金时代结束的一年</b>
-        <span>222222222222222222</span>
-        <a href="/blog/article/9164" target="_blank" class="readmore">
-          文章阅读</a
-        >
-      </li>
-    </ul>
+          </div>
+          <div class="content">
+            <b>一场球，一杯酒，一种陪伴</b>
+            <span>
+              123 这是随便可以
+              输入的内容；这是随便可以输入的内容；这是随便可以输入的内容；这是随便可以输入的内容；这是随便可以输入的内容；这是随便可以
+              输入的内容；这是随便可以输入的内容；这是随便可以输入的内容；12345678900987654321；这是随便可以输入的内容；这是随便可以输入的内容；12345678900987654321
+            </span>
+            <a href="#" target="_blank" class="readmore">文章阅读</a>
+          </div>
+        </el-card>
+      </el-timeline-item>
+      <el-timeline-item timestamp="2018/4/3" placement="top" color="#0bbd87">
+        <el-card>
+          <div style="width: 30%; float: left">
+            <img
+              src="http://ruoyi.wjshlnn.com/profile/material/2021/09/23/7796f436-fac1-4de4-ab58-3113bc9cd97f.jpg"
+              class="image"
+            />
+          </div>
+          <div class="content">
+            <b>一场球，一杯酒，一种陪伴</b>
+            <span>
+              123 这是随便可以
+              输入的内容；这是随便可以输入的内容；这是随便可以输入的内容；
+              234567890
+              5555888999999sdfsfs里记录记录就浏览记录氪金大佬杰弗里斯街坊四邻
+            </span>
+            <a href="#" target="_blank" class="readmore">文章阅读</a>
+          </div>
+        </el-card>
+      </el-timeline-item>
+      <el-timeline-item timestamp="2018/4/2" placement="top" color="#0bbd87">
+        <el-card>
+          <h4>Update Github template</h4>
+          <p>Tom committed 2018/4/2 20:46</p>
+        </el-card>
+      </el-timeline-item>
+    </el-timeline>
   </div>
 </template>
 
@@ -270,55 +310,14 @@ img {
   height: 48px;
 }
 
-.zhuanti ul {
-  overflow: hidden;
-  padding: 10px 0 20px 10px;
-  position: relative;
-}
-.zhuanti ul::before {
-  content: '';
-  position: absolute;
-  background: #fff;
-  width: 1px;
-  height: 100%;
-  left: 10px;
-}
-.zhuanti ul:after {
-  content: '';
-  position: absolute;
-  background: #fff;
+.ad img {
   width: 100%;
-  height: 1px;
-  bottom: 20px;
-  left: 0;
 }
-.zhuanti li {
-  float: left;
-  width: 27.6%;
-  border-bottom: #eee 1px solid;
-  border-left: #eee 1px solid;
-  overflow: hidden;
-  padding: 20px;
-  -moz-transition: all 0.5s ease;
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
+
+.el-col {
+  margin-top: 15px;
 }
-.zhuanti li:hover {
-  background: #fff;
-  box-shadow: #ccc 1px 1px 8px;
-}
-.zhuanti li:hover img {
-  transform: scale(1.05);
-}
-.ztpic {
-  width: 100%;
-  height: 100px;
-  overflow: hidden;
-  border-radius: 3px;
-  background: #ccc;
-  display: block;
-}
-.ztpic img {
+.zhuanti .el-col img {
   display: inline-block;
   width: 100%;
   min-height: 100%;
@@ -326,7 +325,10 @@ img {
   vertical-align: middle;
   transition: all 0.5s ease-out 0.1s;
 }
-.zhuanti li b {
+.zhuanti .el-col img:hover {
+  transform: scale(1.05);
+}
+.zhuanti .el-col b {
   display: block;
   width: 100%;
   overflow: hidden;
@@ -337,7 +339,7 @@ img {
   white-space: nowrap;
   overflow: hidden;
 }
-.zhuanti li span {
+.zhuanti .el-col span {
   color: #999;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -346,6 +348,14 @@ img {
   -webkit-line-clamp: 3;
   font-size: 14px;
   height: 62px;
+  display: block;
+}
+.ztpic {
+  width: 100%;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 3px;
+  background: #ccc;
   display: block;
 }
 .readmore {
@@ -357,7 +367,41 @@ img {
   content: '+';
   color: #063;
 }
-.ad img {
+
+.bloglist img {
+  display: inline-block;
+  width: 85%;
+  min-height: 100%;
+  height: auto;
+  vertical-align: middle;
+  transition: all 0.5s ease-out 0.1s;
+}
+.bloglist img:hover {
+  transform: scale(1.05);
+}
+.bloglist b {
+  display: block;
   width: 100%;
+  overflow: hidden;
+  height: 30px;
+  line-height: 30px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.bloglist span {
+  color: #999;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; // 数字代表文字需要显示几行
+  font-size: 14px;
+  height: 62px;
+}
+.bloglist .content {
+  width: 65%;
+  float: left;
+  padding: 0px 10px 10px 14px;
 }
 </style>

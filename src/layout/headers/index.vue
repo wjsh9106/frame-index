@@ -1,8 +1,13 @@
 <template>
   <div class="navbar">
-    <el-image
+    <!-- <el-image
       :src="require('@/assets/images/logo_touming.png')"
       :preview-src-list="[require('@/assets/images/logo_touming.png')]"
+      alt=""
+      style="width: 60px"
+    /> -->
+    <el-image
+      :src="require('@/assets/images/logo_touming.png')"
       alt=""
       style="width: 60px"
     />

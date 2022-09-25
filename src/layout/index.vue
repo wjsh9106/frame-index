@@ -1,46 +1,23 @@
 <template>
-  <div class="common-layout">
+  <div class="common-layout" style="min-width: 860px">
     <el-container>
-      <el-header><Headers /></el-header>
+      <el-header style="background: #474d53"><Headers /></el-header>
       <el-main>
         <div class="main">
-          <div class="lbox"><router-view /></div>
-          <div class="rbox">
-            <div class="whitebg card" style="height: auto">
-              <div class="card-pic">
-                <div class="card-pic-wrap">
-                  <img
-                    src="http://ruoyi.wjshlnn.com/blog/jxhx/images/avatar.jpg"
-                    alt="阿文博客"
-                  />
-                </div>
-              </div>
+          <div class="lbox" ref="lboxref"><router-view /></div>
+          <div v-if="rightIsshow" class="rbox">
+            <div
+              class="whitebg card"
+              style="
+                height: auto;
+                background-image: url('http://static-dir.wjshlnn.com/startalk/images/xingkong.gif');
+                background-size: 100%;
+              "
+            >
               <div class="adout-author">
                 <p class="website">
                   人生的价值，并不是用时间，而是用深度量去衡量的。——列夫·托尔斯泰
                 </p>
-              </div>
-              <div class="aside-content">
-                <div class="about-articles">
-                  <table>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <strong><a href="javascipt:void(0);">14</a></strong>
-                          <span>文章</span>
-                        </td>
-                        <td>
-                          <strong><a href="javascipt:void(0);">453</a></strong>
-                          <span>浏览</span>
-                        </td>
-                        <td>
-                          <strong><a href="javascipt:void(0);">4</a></strong>
-                          <span>评论</span>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
               </div>
             </div>
             <div class="whitebg cloud">
@@ -127,7 +104,31 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue'
 import Headers from './headers'
+
+const lboxref = ref(null)
+let screenWidth = document.documentElement.clientWidth
+// let screenHeight = document.documentElement.clientHeight
+const rightIsshow = ref(true)
+onMounted(() => {
+  windoeSize()
+  window.onresize = () => {
+    windoeSize()
+  }
+})
+
+const windoeSize = () => {
+  screenWidth = document.documentElement.clientWidth
+  // screenHeight = document.documentElement.clientHeight
+  // console.log('屏幕大小变动：', screenWidth, screenHeight)
+  rightIsshow.value = screenWidth >= 1200
+  // 修改一个 Dom 节点上的 CSS 变量
+  lboxref.value.style.setProperty(
+    '--lbox-width',
+    rightIsshow.value ? '74.5%' : '100%'
+  )
+}
 </script>
 <style lang="scss" scoped>
 .el-container {
@@ -139,7 +140,8 @@ import Headers from './headers'
     width: 85%;
     margin: 0 auto;
     .lbox {
-      width: 74.5%;
+      width: var(--lbox-width);
+      --lbox-width: 74.5%;
       margin: 0;
       padding: 0;
       float: left;
@@ -163,50 +165,22 @@ import Headers from './headers'
   overflow: hidden;
   margin-bottom: 20px;
 }
-.card-pic {
-  margin: -20px;
-  height: 120px;
-  position: relative;
-  background: url(http://ruoyi.wjshlnn.com/blog/jxhx/images/banner.png);
-}
-.card-pic .card-pic-wrap {
-  position: absolute;
-  left: 50%;
-  top: 85px;
-  margin-left: -36px;
-  height: 70px;
-  width: 70px;
-  border-radius: 50%;
-  border: 3px solid #fff;
-  overflow: hidden;
-}
-.card-pic-wrap img {
-  height: 70px;
-  width: 70px;
-}
 .adout-author {
   text-align: center;
   font-size: 16px;
-  padding: 50px 0px 0 0px;
+  padding: 10px 10px;
+  background: #fff;
+  opacity: 0.7;
+  border-radius: 10px;
 }
 .adout-author .website {
   font-size: 14px;
   text-align: left;
-  margin-top: 20px;
-  border-bottom: 1px dotted #ddd;
+  // margin-top: 20px;
+  // border-bottom: 1px dotted #ddd;
   padding-bottom: 5px;
-  color: #00a779;
-}
-.card .about-articles {
-  overflow: hidden;
-  padding-top: 10px;
-}
-.about-articles table {
-  width: 100%;
-  table-layout: fixed;
-  text-align: center;
-  margin-left: -1px;
-  color: #999;
+  color: #9805fdb0;
+  line-height: 25px;
 }
 
 .htitle {
@@ -337,7 +311,8 @@ import Headers from './headers'
 }
 
 .whitebg {
-  background: #fff !important;
+  // background: #fff !important;
+  background: #fff;
   border-radius: 3px;
   padding: 20px;
   margin-bottom: 20px;

@@ -16,6 +16,21 @@ const routes = [
         path: 'article',
         name: 'article',
         component: () => import('@/views/blog/article.vue')
+      },
+      {
+        path: 'articleEditor',
+        name: 'articleEditor',
+        component: () => import('@/views/blog/articleEditor.vue')
+      },
+      {
+        path: 'articleMd',
+        name: 'articleMd',
+        component: () => import('@/views/blog/articleMd.vue')
+      },
+      {
+        path: 'articleHtml',
+        name: 'articleHtml',
+        component: () => import('@/views/blog/articleHtml.vue')
       }
     ]
   }

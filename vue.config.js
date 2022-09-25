@@ -70,5 +70,31 @@ module.exports = {
         symbolId: 'icon-[name]'
       })
       .end()
+  },
+  devServer: {
+    // 自动打开浏览器
+    open: false,
+    // 设置主机地址
+    host: 'localhost',
+    // 设置默认端口
+    port: 8080,
+    https: false,
+    // 跨域、内网穿透配置
+    historyApiFallback: true,
+    allowedHosts: 'all',
+    // 设置代理
+    proxy: {
+      '/api': {
+        // 目标 API 地址
+        target: 'http://localhost:8801/',
+        // 如果要代理 websockets
+        // ws: true,
+        // 将主机标头的原点更改为目标URL
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        }
+      }
+    }
   }
 }

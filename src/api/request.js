@@ -8,11 +8,11 @@ const service = axios.create({
 
 service.interceptors.response.use(
   (response) => {
-    console.log(response)
+    // console.log(response)
     // 获取返回信息中的 data 属性
     const { data } = response
     if (data.code === 2000) {
-      return data.result
+      return data
     } else {
       // 错误提示
       ElMessage.error(data.message)

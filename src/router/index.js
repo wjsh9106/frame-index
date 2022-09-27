@@ -31,6 +31,11 @@ const routes = [
         path: 'articleHtml',
         name: 'articleHtml',
         component: () => import('@/views/blog/articleHtml.vue')
+      },
+      {
+        path: 'articlePage',
+        name: 'articlePage',
+        component: () => import('@/views/blog/articlePage.vue')
       }
     ]
   }

@@ -37,78 +37,24 @@
   <div class="zhuanti whitebg">
     <h2 class="htitle">特别推荐</h2>
     <el-row :gutter="12">
-      <el-col :span="8">
+      <el-col :span="8" v-for="article in tuijianArticle" :key="article.id">
         <el-card shadow="hover">
-          <a href="#" class="ztpic">
-            <img
-              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-              class="image"
-            />
+          <a
+            href="JavaScript:void(0)"
+            @click="showArticle(article.id)"
+            class="ztpic"
+          >
+            <img :src="article.articlePic" class="image" />
           </a>
           <div style="padding: 14px">
-            <b>2018，创业黄金时代结束的一年</b>
-            <span>222222222222222222</span>
-            <a href="#" target="_blank" class="readmore">文章阅读</a>
-          </div>
-        </el-card>
-      </el-col>
-      <el-col :span="8">
-        <el-card shadow="hover">
-          <a href="#" class="ztpic">
-            <img
-              src="http://ruoyi.wjshlnn.com/profile/upload/article/2019/11/19/99d7e90e2beb8bd825a04922aadc911b.jpg"
-              class="image"
-            />
-          </a>
-          <div style="padding: 14px">
-            <b>一场球，一杯酒，一种陪伴</b>
-            <span>123</span>
-            <a href="#" target="_blank" class="readmore">文章阅读</a>
-          </div>
-        </el-card>
-      </el-col>
-      <el-col :span="8">
-        <el-card shadow="hover">
-          <a href="#" class="ztpic">
-            <img
-              src="http://ruoyi.wjshlnn.com/profile/material/2021/09/23/7796f436-fac1-4de4-ab58-3113bc9cd97f.jpg"
-              class="image"
-            />
-          </a>
-          <div style="padding: 14px">
-            <b>小程序实现轮播图示例</b>
-            <span>小程序实现轮播图示例</span>
-            <a href="#" target="_blank" class="readmore">文章阅读</a>
-          </div>
-        </el-card>
-      </el-col>
-      <el-col :span="8">
-        <el-card shadow="hover">
-          <a href="#" class="ztpic">
-            <img
-              src="http://ruoyi.wjshlnn.com/profile/upload/article/2019/11/19/01dd446f5e232f4a3846efd833d9e599.jpg"
-              class="image"
-            />
-          </a>
-          <div style="padding: 14px">
-            <b>新婚快乐，我的青春。</b>
-            <span>123</span>
-            <a href="#" target="_blank" class="readmore">文章阅读</a>
-          </div>
-        </el-card>
-      </el-col>
-      <el-col :span="8">
-        <el-card shadow="hover">
-          <a href="#" class="ztpic">
-            <img
-              src="http://ruoyi.wjshlnn.com/profile/upload/article/2019/11/18/5f8b080065e77ed1993492561409e3de.jpg"
-              class="image"
-            />
-          </a>
-          <div style="padding: 14px">
-            <b>一场球，一杯酒，一种陪伴</b>
-            <span>123</span>
-            <a href="#" target="_blank" class="readmore">文章阅读</a>
+            <b>{{ article.articleName }}</b>
+            <span>{{ article.articleDesc }}</span>
+            <a
+              href="JavaScript:void(0)"
+              @click="showArticle(article.id)"
+              class="readmore"
+              >文章阅读</a
+            >
           </div>
         </el-card>
       </el-col>
@@ -126,8 +72,34 @@
   </div>
 
   <div class="bloglist whitebg">
-    <h2 class="htitle">休闲推荐</h2>
+    <h2 class="htitle">时光轴</h2>
     <el-timeline>
+      <el-timeline-item
+        :timestamp="article.updateTime"
+        placement="top"
+        color="#0bbd87"
+        v-for="article in shijianzhouArticle"
+        :key="article.id"
+      >
+        <el-card shadow="hover">
+          <div style="width: 30%; float: left">
+            <a href="JavaScript:void(0)" @click="showArticle(article.id)">
+              <img :src="article.articlePic" class="image" />
+            </a>
+          </div>
+          <div class="content">
+            <b>{{ article.articleName }}</b>
+            <span>{{ article.articleDesc }}</span>
+            <a
+              href="JavaScript:void(0)"
+              @click="showArticle(article.id)"
+              class="readmore"
+              >文章阅读</a
+            >
+          </div>
+        </el-card>
+      </el-timeline-item>
+
       <el-timeline-item timestamp="2018/4/12" placement="top" color="#0bbd87">
         <el-card shadow="hover">
           <div style="width: 30%; float: left">
@@ -147,26 +119,6 @@
           </div>
         </el-card>
       </el-timeline-item>
-      <el-timeline-item timestamp="2018/4/3" placement="top" color="#0bbd87">
-        <el-card>
-          <div style="width: 30%; float: left">
-            <img
-              src="http://ruoyi.wjshlnn.com/profile/material/2021/09/23/7796f436-fac1-4de4-ab58-3113bc9cd97f.jpg"
-              class="image"
-            />
-          </div>
-          <div class="content">
-            <b>一场球，一杯酒，一种陪伴</b>
-            <span>
-              123 这是随便可以
-              输入的内容；这是随便可以输入的内容；这是随便可以输入的内容；
-              234567890
-              5555888999999sdfsfs里记录记录就浏览记录氪金大佬杰弗里斯街坊四邻
-            </span>
-            <a href="#" target="_blank" class="readmore">文章阅读</a>
-          </div>
-        </el-card>
-      </el-timeline-item>
       <el-timeline-item timestamp="2018/4/2" placement="top" color="#0bbd87">
         <el-card>
           <h4>Update Github template</h4>
@@ -178,7 +130,9 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { articlePage } from '@/api/article'
 
 const router = useRouter()
 const showArticle = (id) => {
@@ -187,6 +141,17 @@ const showArticle = (id) => {
     query: { articleId: id }
   })
 }
+
+const tuijianArticle = ref([])
+const shijianzhouArticle = ref([])
+const initTjArticle = async () => {
+  const res = await articlePage(4, 5)
+  tuijianArticle.value = res.result
+  shijianzhouArticle.value = res.result
+  // console.log('initTjArticle', res.result)
+}
+
+initTjArticle()
 </script>
 <style lang="scss" scoped>
 .el-carousel__item h3 {

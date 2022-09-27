@@ -13,38 +13,40 @@
       background-color="#545c64"
       text-color="#fff"
       active-text-color="#ffd04b"
-      @select="handleSelect"
     >
-      <el-menu-item index="0"
-        ><el-image
-          :src="require('@/assets/images/logo_touming.png')"
-          alt=""
-          style="width: 60px"
-      /></el-menu-item>
-      <sub-menu :menu="menu" v-for="menu in navList" :key="menu.id"></sub-menu>
+      <!-- LOGO -->
+      <el-menu-item index="-1">
+        <a href="/"
+          ><el-image
+            :src="require('@/assets/images/logo_touming.png')"
+            alt=""
+            style="width: 60px"
+        /></a>
+      </el-menu-item>
+      <!-- 此处调用menu-item组件 -->
+      <menu-item :navList="navList"></menu-item>
     </el-menu>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { navs } from '@/api/nav'
-import SubMenu from './subMenu.vue'
+import MenuItem from './menuItem.vue'
 
-const activeIndex = ref('1')
-const handleSelect = (key, keyPath) => {
-  console.log(key, keyPath)
-}
+onMounted(() => {
+  initNav()
+})
+
+const activeIndex = ref(0)
 
 const navList = ref([])
 
 const initNav = async () => {
   const res = await navs()
-  navList.value = res
-  // console.log('navs', res)
+  navList.value = res.result
+  // console.log('navs', res.result)
 }
-
-initNav()
 </script>
 <style lang="scss" scoped>
 .navbar {

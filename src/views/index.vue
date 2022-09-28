@@ -64,9 +64,7 @@
   <div class="ad whitebg">
     <el-carousel height="126px">
       <el-carousel-item v-for="item in 4" :key="item">
-        <a @click="showArticle(item)">
-          <img src="http://ruoyi.wjshlnn.com/blog/jxhx/images/longad.jpg" />
-        </a>
+        <img src="http://ruoyi.wjshlnn.com/blog/jxhx/images/longad.jpg" />
       </el-carousel-item>
     </el-carousel>
   </div>
@@ -92,37 +90,12 @@
             <span>{{ article.articleDesc }}</span>
             <a
               href="JavaScript:void(0)"
+              :title="article.articleName"
+              class="viewmore"
               @click="showArticle(article.id)"
-              class="readmore"
               >文章阅读</a
             >
           </div>
-        </el-card>
-      </el-timeline-item>
-
-      <el-timeline-item timestamp="2018/4/12" placement="top" color="#0bbd87">
-        <el-card shadow="hover">
-          <div style="width: 30%; float: left">
-            <img
-              src="http://ruoyi.wjshlnn.com/profile/upload/article/2019/11/18/5f8b080065e77ed1993492561409e3de.jpg"
-              class="image"
-            />
-          </div>
-          <div class="content">
-            <b>一场球，一杯酒，一种陪伴</b>
-            <span>
-              123 这是随便可以
-              输入的内容；这是随便可以输入的内容；这是随便可以输入的内容；这是随便可以输入的内容；这是随便可以输入的内容；这是随便可以
-              输入的内容；这是随便可以输入的内容；这是随便可以输入的内容；12345678900987654321；这是随便可以输入的内容；这是随便可以输入的内容；12345678900987654321
-            </span>
-            <a href="#" target="_blank" class="readmore">文章阅读</a>
-          </div>
-        </el-card>
-      </el-timeline-item>
-      <el-timeline-item timestamp="2018/4/2" placement="top" color="#0bbd87">
-        <el-card>
-          <h4>Update Github template</h4>
-          <p>Tom committed 2018/4/2 20:46</p>
         </el-card>
       </el-timeline-item>
     </el-timeline>
@@ -138,7 +111,7 @@ const router = useRouter()
 const showArticle = (id) => {
   router.push({
     name: 'article',
-    query: { articleId: id }
+    params: { articleId: id }
   })
 }
 
@@ -368,5 +341,15 @@ img {
   width: 65%;
   float: left;
   padding: 0px 10px 10px 14px;
+}
+a.viewmore {
+  display: block;
+  right: 10px;
+  bottom: 20px;
+  position: absolute;
+  padding: 3px 10px;
+  background: #12b7de;
+  color: #fff;
+  border-radius: 3px;
 }
 </style>

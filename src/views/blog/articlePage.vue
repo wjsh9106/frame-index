@@ -87,7 +87,7 @@ const route = useRoute()
 const showArticle = (id) => {
   router.push({
     name: 'article',
-    query: { articleId: id, nav: route.query.navTitle }
+    params: { articleId: id, nav: route.query.navTitle }
   })
 }
 

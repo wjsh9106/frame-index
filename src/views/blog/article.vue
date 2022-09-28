@@ -136,11 +136,10 @@ const watchArticleSize = () => {
 }
 
 const route = useRoute()
-// console.log('route.query.articleId:', route.query.articleId)
 
 const articInfo = ref([])
 const initArticle = async () => {
-  const res = await articleDetails(route.query.articleId)
+  const res = await articleDetails(route.params.articleId)
   articInfo.value = res.result
   // console.log('initArticle', res.result)
 }

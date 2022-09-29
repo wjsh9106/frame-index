@@ -33,9 +33,9 @@ const routes = [
         component: () => import('@/views/blog/articleHtml.vue')
       },
       {
-        path: 'articlePage',
-        name: 'articlePage',
-        component: () => import('@/views/blog/articlePage.vue')
+        path: 'category/:navId',
+        name: 'category',
+        component: () => import('@/views/blog/category.vue')
       }
     ]
   }

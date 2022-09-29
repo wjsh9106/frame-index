@@ -1,6 +1,6 @@
 <template>
   <div class="content_box whitebg">
-    <h2 class="htitle">{{ route.query.nav }}</h2>
+    <h2 class="htitle">{{ articInfo.navName }}</h2>
     <h1 class="con_tilte">{{ articInfo.articleName }}</h1>
     <p class="bloginfo">
       <svg-icon icon="shijian" class="svg-container"></svg-icon>
@@ -86,6 +86,9 @@ import $ from 'jquery'
 import { ref, onMounted, nextTick } from 'vue'
 import { articleDetails } from '@/api/article'
 import elementResizeDetectorMaker from 'element-resize-detector'
+import { useStore } from 'vuex'
+
+const store = useStore()
 
 // $(function () {
 //   console.log('document.body.clientHeight1:', document.body.offsetHeight)
@@ -142,6 +145,10 @@ const initArticle = async () => {
   const res = await articleDetails(route.params.articleId)
   articInfo.value = res.result
   // console.log('initArticle', res.result)
+  store.commit('app/updateHeaderMenuActive', {
+    navId: articInfo.value.navId,
+    navName: articInfo.value.navName
+  })
 }
 
 initArticle()

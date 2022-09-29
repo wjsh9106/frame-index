@@ -1,6 +1,6 @@
 <template>
   <div class="whitebg bloglist">
-    <h2 class="htitle">{{ route.query.navTitle }}</h2>
+    <h2 class="htitle">{{ store.getters.headerMenuActiveName }}</h2>
     <ul v-if="articleList.length > 0">
       <li v-for="article in articleList" :key="article.id">
         <h3 class="blogtitle">
@@ -80,6 +80,9 @@
 import { ref, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { articlePage } from '@/api/article'
+import { useStore } from 'vuex'
+
+const store = useStore()
 
 const router = useRouter()
 const route = useRoute()
@@ -93,7 +96,7 @@ const showArticle = (id) => {
 
 const articleList = ref([])
 const initArticlePage = async () => {
-  const res = await articlePage(route.query.nav, 5)
+  const res = await articlePage(route.params.navId, 5)
   articleList.value = res.result
   // console.log('initArticlePage', res.result, res.pageInfo)
 }
@@ -106,7 +109,7 @@ watch(
     // console.log('newVal, oldVal', newVal, oldVal)
     if (
       oldVal !== undefined &&
-      newVal.path === oldVal.path &&
+      newVal.name === oldVal.name &&
       newVal.fullPath !== oldVal.fullPath
     ) {
       initArticlePage()

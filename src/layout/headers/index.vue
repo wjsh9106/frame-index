@@ -7,7 +7,7 @@
       style="width: 60px"
     /> -->
     <el-menu
-      :default-active="activeIndex"
+      :default-active="store.getters.headerMenuActiveIndex"
       class="el-menu-demo"
       mode="horizontal"
       background-color="#545c64"
@@ -30,15 +30,17 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { navs } from '@/api/nav'
 import MenuItem from './menuItem.vue'
+import $ from 'jquery'
+import { useStore } from 'vuex'
+
+const store = useStore()
 
 onMounted(() => {
   initNav()
 })
-
-const activeIndex = ref(0)
 
 const navList = ref([])
 
@@ -47,6 +49,15 @@ const initNav = async () => {
   navList.value = res.result
   // console.log('navs', res.result)
 }
+
+watch(
+  () => store.getters.headerMenuActiveIndex,
+  (newVal, oldVal) => {
+    // console.log('newVal:', newVal, '|', 'oldVal:', oldVal)
+    $('li[attr-index=' + newVal + ']').addClass('is-active')
+  },
+  { immediate: true, deep: true }
+)
 </script>
 <style lang="scss" scoped>
 .navbar {

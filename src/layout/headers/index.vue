@@ -35,8 +35,10 @@ import { navs } from '@/api/nav'
 import MenuItem from './menuItem.vue'
 import $ from 'jquery'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 
 const store = useStore()
+const router = useRouter()
 
 onMounted(() => {
   initNav()
@@ -48,6 +50,15 @@ const initNav = async () => {
   const res = await navs()
   navList.value = res.result
   // console.log('navs', res.result)
+  if (router.currentRoute._value.name === 'index') {
+    store.commit('app/updateHeaderMenuActive', {
+      navId: navList.value[0].id,
+      navName: navList.value[0].name
+    })
+  }
+  $('li[attr-index=' + store.getters.headerMenuActiveIndex + ']').addClass(
+    'is-active'
+  )
 }
 
 watch(

@@ -2,13 +2,13 @@ import request from './request'
 
 /**
  * 根据导航/分类ID获取文章分页信息
- * @param nav   导航/分类ID
- * @param size  每页显示的条数
+ * @param nav     导航/分类ID
+ * @param current 当前页
  * @return
  */
-export const articlePage = (nav, size) => {
+export const articlePage = (nav, current) => {
   return request({
-    url: `article/articlePage/${nav}/${size}`,
+    url: `article/category/${nav}/${current}`,
     method: 'GET'
   })
 }

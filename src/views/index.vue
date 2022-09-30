@@ -59,6 +59,13 @@
         </el-card>
       </el-col>
     </el-row>
+
+    <div
+      style="width: 100%; text-align: center"
+      v-if="tuijianArticle.length === 0"
+    >
+      <el-empty description="没有数据" />
+    </div>
   </div>
 
   <div class="ad whitebg">
@@ -76,7 +83,7 @@
         :timestamp="article.updateTime"
         placement="top"
         color="#0bbd87"
-        v-for="article in shijianzhouArticle"
+        v-for="article in sjArticle"
         :key="article.id"
       >
         <el-card shadow="hover">
@@ -99,6 +106,21 @@
         </el-card>
       </el-timeline-item>
     </el-timeline>
+
+    <div style="width: 100%; text-align: center" v-if="sjArticle.length > 0">
+      <div v-if="sjArticlePage.hasNext">
+        <el-button
+          type="success"
+          plain
+          @click="nextSjPage($event)"
+          style="width: 100%"
+          >加载更多</el-button
+        >
+      </div>
+    </div>
+    <div style="width: 100%; text-align: center" v-if="sjArticle.length === 0">
+      <el-empty description="没有数据" />
+    </div>
   </div>
 </template>
 
@@ -106,6 +128,10 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { articlePage } from '@/api/article'
+import { useStore } from 'vuex'
+import { ElNotification } from 'element-plus'
+
+const store = useStore()
 
 const router = useRouter()
 const showArticle = (id) => {
@@ -116,15 +142,36 @@ const showArticle = (id) => {
 }
 
 const tuijianArticle = ref([])
-const shijianzhouArticle = ref([])
+const sjArticle = ref([])
+const sjArticlePage = ref({})
+let current = 1
 const initTjArticle = async () => {
-  const res = await articlePage(4, 5)
+  const res = await articlePage(store.getters.headerMenuActiveIndex, current)
   tuijianArticle.value = res.result
-  shijianzhouArticle.value = res.result
+  sjArticle.value.push(...res.result)
+  sjArticlePage.value = res.pageInfo
   // console.log('initTjArticle', res.result)
 }
 
 initTjArticle()
+
+const nextSjPage = (event) => {
+  // event.target  当前点击的元素
+  // event.currentTarget 当前绑定事件的元素
+  // event.currentTarget.innerHTML 当前绑定事件的元素的html
+  // event.currentTarget.innerText 当前绑定事件的元素的文本
+  if (sjArticlePage.value !== null && sjArticlePage.value.hasNext) {
+    current += 1
+    initTjArticle()
+  } else {
+    event.currentTarget.innerText = '没有更多数据了'
+    ElNotification({
+      title: '提示',
+      message: '没有更多数据了！',
+      type: 'info'
+    })
+  }
+}
 </script>
 <style lang="scss" scoped>
 .el-carousel__item h3 {

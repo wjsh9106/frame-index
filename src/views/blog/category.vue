@@ -45,33 +45,21 @@
       </li>
     </ul>
 
-    <div class="cy-my-page" style="height: 100%; width: 100%" v-else>
-      <ul class="cy-my-comment-list">
-        <div class="empty-hold-place">
-          <div class="pet-pic"></div>
-          <div class="empty-txt comment-empty-txt">没有查询到结果!</div>
-          <div class="power-by-cy-txt">
-            &nbsp;&nbsp;Powdered By ruoyi-plus&nbsp;&nbsp;
-          </div>
-        </div>
-      </ul>
+    <div v-else>
+      <el-empty description="没有查询到结果!" />
     </div>
 
     <div id="pageGroup" v-if="articleList.length > 0">
-      <span class="pageinfo"
-        >共<strong>1</strong>页<strong>2</strong>条记录</span
-      >
-      <a href="/blog/category/26?pageSize=10" class="homepage">首页</a>
-
-      <a
-        class="listpage curpage"
-        href="/blog/category/26?pageNum=1&amp;pageSize=10"
-        >1</a
-      >
-
-      <a href="/blog/category/26?pageNum=1&amp;pageSize=10" class="endpage"
-        >尾页</a
-      >
+      <el-pagination
+        v-model:currentPage="page.current"
+        :small="page.small"
+        :disabled="page.disabled"
+        :background="page.background"
+        :pager-count="11"
+        layout="total, prev, pager, next"
+        :total="page.total"
+        @current-change="handleCurrentChange"
+      />
     </div>
   </div>
 </template>
@@ -87,6 +75,14 @@ const store = useStore()
 const router = useRouter()
 const route = useRoute()
 
+const page = ref({
+  total: 0,
+  current: 1,
+  small: true,
+  disabled: false,
+  background: false
+})
+
 const showArticle = (id) => {
   router.push({
     name: 'article',
@@ -96,8 +92,10 @@ const showArticle = (id) => {
 
 const articleList = ref([])
 const initArticlePage = async () => {
-  const res = await articlePage(route.params.navId, 5)
-  articleList.value = res.result
+  const res = await articlePage(route.params.navId, page.value.current)
+  articleList.value.push(...res.result)
+  page.value.total = res.pageInfo.total
+  page.value.current = res.pageInfo.current
   // console.log('initArticlePage', res.result, res.pageInfo)
 }
 
@@ -117,8 +115,19 @@ watch(
   },
   { immediate: true, deep: true }
 )
+
+const handleCurrentChange = (pageNum) => {
+  page.value.current = pageNum
+  initArticlePage()
+}
 </script>
 <style lang="scss" scoped>
+::v-deep .el-pagination {
+  padding-top: 16px;
+  box-sizing: border-box;
+  justify-content: center; // 居中显示
+}
+
 .svg-container {
   //   padding: 6px 5px 6px 15px;
   color: #889aa4;
@@ -164,7 +173,7 @@ watch(
 .bloglist li {
   overflow: hidden;
   margin-bottom: 20px;
-  border-bottom: #eee 1px dashed;
+  border-bottom: #e4e7ed 1px solid;
   padding-bottom: 20px;
   position: relative;
   min-height: 120px;
@@ -271,60 +280,6 @@ a.viewmore {
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-/*没有内容*/
-.cy-my-page {
-  margin: 0 auto;
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 630px;
-  overflow: hidden;
-  overflow-y: auto;
-  display: block;
-}
-
-.cy-my-page .cy-my-comment-list {
-  display: block;
-  text-align: center;
-  position: relative;
-  top: calc(50% - 333px);
-}
-.cy-my-page > ul {
-  display: inline-block;
-
-  vertical-align: middle;
-}
-.cy-my-page .cy-my-comment-list .empty-hold-place {
-  display: block;
-  text-align: center;
-  line-height: 16px;
-  font-size: 16px;
-  font-family: 'Microsoft YaHei';
-  width: 345px;
-  margin: 0 auto;
-  padding-bottom: 50px;
-}
-.cy-my-page .cy-my-comment-list .empty-hold-place .pet-pic {
-  width: 345px;
-  height: 293px;
-  background: url(http://ruoyi.wjshlnn.com/blog/jxhx/images/notice-empty.png);
-  background-repeat: no-repeat;
-}
-.comment-empty-txt {
-  color: #333;
-  font-size: 22px;
-  font-family: 'Comic Sans MS', cursive;
-  margin-top: 20px;
-}
-.power-by-cy-txt {
-  width: 345px;
-  height: 16px;
-  background-repeat: no-repeat;
-  margin-top: 20px;
-  color: #d2cccc;
-  font-size: 14px;
 }
 
 #pageGroup {

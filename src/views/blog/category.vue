@@ -52,6 +52,7 @@
     <div id="pageGroup" v-if="articleList.length > 0">
       <el-pagination
         v-model:currentPage="page.current"
+        v-model:page-size="page.size"
         :small="page.small"
         :disabled="page.disabled"
         :background="page.background"
@@ -93,9 +94,10 @@ const showArticle = (id) => {
 const articleList = ref([])
 const initArticlePage = async () => {
   const res = await articlePage(route.params.navId, page.value.current)
-  articleList.value.push(...res.result)
+  articleList.value = res.result
   page.value.total = res.pageInfo.total
   page.value.current = res.pageInfo.current
+  page.value.size = res.pageInfo.size
   // console.log('initArticlePage', res.result, res.pageInfo)
 }
 
@@ -110,6 +112,7 @@ watch(
       newVal.name === oldVal.name &&
       newVal.fullPath !== oldVal.fullPath
     ) {
+      articleList.value = []
       initArticlePage()
     }
   },

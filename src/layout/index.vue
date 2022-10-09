@@ -95,6 +95,7 @@
             </div>
           </div>
         </div>
+        <Music />
       </el-main>
       <el-footer
         ><span>Footer</span><el-icon><bell-filled /></el-icon
@@ -106,6 +107,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import Headers from './headers'
+import Music from './music'
 
 const lboxref = ref(null)
 let screenWidth = document.documentElement.clientWidth

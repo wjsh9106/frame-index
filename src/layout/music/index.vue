@@ -24,8 +24,8 @@
       <div class="music__main__right" ref="musicRight">
         <div class="music__main__title">
           <span>{{ audioName }}</span>
-          <span>--</span>
-          <span>{{ audioAuthor }}</span>
+          <span style="font-size: 18px; color: #d1dbe5">&nbsp;--&nbsp;</span>
+          <span style="font-size: 18px; color: #d1dbe5">{{ audioAuthor }}</span>
         </div>
         <div class="music__main__timeBar">
           <div class="bar" ref="bar" @click="handClickBar">
@@ -363,8 +363,10 @@ const watchMusicTime = () => {
     }
     &__title {
       margin-bottom: 15px;
+      display: flex;
+      align-items: center;
       span {
-        font-size: 20px;
+        font-size: 27px;
       }
     }
     &__btn {

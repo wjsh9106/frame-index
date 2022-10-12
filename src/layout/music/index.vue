@@ -116,6 +116,18 @@ const audioSrcs = [
     author: '作者789',
     pic: 'http://ruoyi.wjshlnn.com/profile/material/2021/09/20/eea9e7cb-10e5-478a-8268-c986c50f78fa.png',
     url: 'http://downsc.chinaz.net/files/download/sound1/201206/1638.mp3'
+  },
+  {
+    name: '000',
+    author: '作者000',
+    pic: 'http://ruoyi.wjshlnn.com/profile/material/2021/09/19/f6a4b4f0-dd93-4f5c-a52c-75717468fbb5.png',
+    url: 'http://downsc.chinaz.net/files/download/sound1/201206/1638.mp3'
+  },
+  {
+    name: '222',
+    author: '作者722',
+    pic: 'http://ruoyi.wjshlnn.com/profile/material/2021/09/20/eea9e7cb-10e5-478a-8268-c986c50f78fa.png',
+    url: 'http://downsc.chinaz.net/files/download/sound1/201206/1638.mp3'
   }
 ]
 
@@ -195,6 +207,7 @@ const shouqi = () => {
     audioShouqi.value = false
     musicRight.value.style.display = 'none'
     musicMain.value.style.width = '120px'
+    musicMain.value.style.backgroundSize = '100% 100%'
     if (!audioList.value) {
       listShow()
     }
@@ -203,6 +216,7 @@ const shouqi = () => {
     audioShouqi.value = true
     musicRight.value.style.display = 'block'
     musicMain.value.style.width = '500px'
+    musicMain.value.style.backgroundSize = '100%'
   }
 }
 
@@ -212,10 +226,14 @@ const listShow = () => {
     // 展开
     audioList.value = false
     musicList.value.style.display = 'block'
+    const audioBgImg = require('@/assets/images/sky_cloud.jpg')
+    musicMain.value.style.backgroundImage = 'url(' + audioBgImg + ')'
   } else {
     // 收起
     audioList.value = true
     musicList.value.style.display = 'none'
+    const audioBgImg = require('@/assets/images/sky_cloud_small.jpg')
+    musicMain.value.style.backgroundImage = 'url(' + audioBgImg + ')'
   }
 }
 
@@ -329,7 +347,7 @@ const watchMusicTime = () => {
   box-sizing: border-box;
   overflow: hidden;
   background-color: #fff;
-  background-image: url('@/assets/images/sky_cloud.jpg');
+  background-image: url('@/assets/images/sky_cloud_small.jpg');
   background-repeat: no-repeat;
   background-size: 100%;
   opacity: 0.9;

@@ -1,7 +1,16 @@
 <template>
-  <el-carousel :interval="4000" type="card" height="200px">
-    <el-carousel-item v-for="item in 6" :key="item">
-      <h3 text="2xl" justify="center">{{ item }}</h3>
+  <el-carousel
+    :interval="4000"
+    type="card"
+    height="200px"
+    v-if="banners.length > 0"
+  >
+    <el-carousel-item v-for="banner in banners" :key="banner.id">
+      <img
+        style="width: 100%"
+        :src="banner.bannerImg"
+        :alt="banner.bannerName"
+      />
     </el-carousel-item>
   </el-carousel>
 
@@ -130,6 +139,7 @@ import { useRouter } from 'vue-router'
 import { articlePage } from '@/api/article'
 import { useStore } from 'vuex'
 import { ElNotification } from 'element-plus'
+import { bannerInfo } from '@/api/banner'
 
 const store = useStore()
 
@@ -172,6 +182,15 @@ const nextSjPage = (event) => {
     })
   }
 }
+
+const banners = ref([])
+const initBanner = async () => {
+  const res = await bannerInfo()
+  // console.log(res.result)
+  banners.value = res.result
+}
+
+initBanner()
 </script>
 <style lang="scss" scoped>
 .el-carousel__item h3 {

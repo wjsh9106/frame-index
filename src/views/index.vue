@@ -2,14 +2,21 @@
   <el-carousel
     :interval="4000"
     type="card"
-    height="200px"
+    :height="bannerHeight + 'px'"
+    @change="bannerChange"
     v-if="banners.length > 0"
   >
-    <el-carousel-item v-for="banner in banners" :key="banner.id">
+    <el-carousel-item v-for="(banner, index) in banners" :key="banner">
       <img
         style="width: 100%"
+        :ref="
+          (el) => {
+            bannerImg[index] = el
+          }
+        "
         :src="banner.bannerImg"
         :alt="banner.bannerName"
+        @load="bannerImgLoad(index)"
       />
     </el-carousel-item>
   </el-carousel>
@@ -134,7 +141,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { articlePage } from '@/api/article'
 import { useStore } from 'vuex'
@@ -163,8 +170,6 @@ const initTjArticle = async () => {
   // console.log('initTjArticle', res.result)
 }
 
-initTjArticle()
-
 const nextSjPage = (event) => {
   // event.target  当前点击的元素
   // event.currentTarget 当前绑定事件的元素
@@ -184,13 +189,33 @@ const nextSjPage = (event) => {
 }
 
 const banners = ref([])
+const bannerHeight = ref(200)
+const bannerImg = ref([])
 const initBanner = async () => {
   const res = await bannerInfo()
   // console.log(res.result)
   banners.value = res.result
 }
 
-initBanner()
+const bannerChange = (current, prev) => {
+  // console.log('当前：%d，上一个：%d', current, prev)
+  // console.log('当前img的高度：', bannerImg.value[current].height)
+  bannerHeight.value = bannerImg.value[current].height
+}
+
+const bannerImgLoad = (index) => {
+  nextTick(() => {
+    if (index === 0) {
+      // 初始化banner高度为第一个banner图片的高度
+      bannerHeight.value = bannerImg.value[0].height
+    }
+  })
+}
+
+onMounted(() => {
+  initTjArticle()
+  initBanner()
+})
 </script>
 <style lang="scss" scoped>
 .el-carousel__item h3 {

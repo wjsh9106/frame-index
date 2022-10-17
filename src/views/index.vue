@@ -7,17 +7,20 @@
     v-if="banners.length > 0"
   >
     <el-carousel-item v-for="(banner, index) in banners" :key="banner">
-      <img
-        style="width: 100%"
-        :ref="
-          (el) => {
-            bannerImg[index] = el
-          }
-        "
-        :src="banner.bannerImg"
-        :alt="banner.bannerName"
-        @load="bannerImgLoad(index)"
-      />
+      <div class="pic_item">
+        <img
+          lass="small"
+          :ref="
+            (el) => {
+              bannerImg[index] = el
+            }
+          "
+          :src="banner.bannerImg"
+          :alt="banner.bannerName"
+          @load="bannerImgLoad(index)"
+        />
+        <h3>{{ banner.bannerName }}</h3>
+      </div>
     </el-carousel-item>
   </el-carousel>
 
@@ -221,7 +224,7 @@ onMounted(() => {
 .el-carousel__item h3 {
   color: #475669;
   opacity: 0.75;
-  line-height: 200px;
+  // line-height: 200px;
   margin: 0;
   text-align: center;
 }
@@ -232,6 +235,32 @@ onMounted(() => {
 
 .el-carousel__item:nth-child(2n + 1) {
   background-color: #d3dce6;
+}
+
+.small {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.pic_item {
+  position: relative;
+  height: 100%;
+}
+.pic_item:hover {
+  cursor: pointer;
+}
+
+.pic_item img {
+  width: 100%;
+  // height: 100%;
+}
+
+.pic_item h3 {
+  color: #eee;
+  position: absolute;
+  left: 1rem;
+  bottom: 2rem;
 }
 
 ul,

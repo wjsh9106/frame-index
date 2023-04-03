@@ -1,18 +1,22 @@
 <template>
   <div class="content_box whitebg">
-    <h2 class="htitle">{{ articInfo.navName }}</h2>
-    <h1 class="con_tilte">{{ articInfo.articleName }}</h1>
+    <h2 class="htitle" v-if="articInfo !== null">{{ articInfo.navName }}</h2>
+    <h1 class="con_tilte" v-if="articInfo !== null">
+      {{ articInfo.articleName }}
+    </h1>
     <p class="bloginfo">
       <svg-icon icon="shijian" class="svg-container"></svg-icon>
-      <span>{{ articInfo.updateTime }}</span>
+      <span v-if="articInfo !== null">{{
+        articInfo.updateTime.substring(0, 10)
+      }}</span>
       <svg-icon icon="browse" class="svg-container"></svg-icon>
-      <span>38</span>
+      <span v-if="articInfo !== null">{{ articInfo.articleViews }}</span>
       <a style="color: #999" class="comment-link-a">
         <svg-icon icon="aixin" class="svg-container"></svg-icon>
-        <span>2</span>
+        <span v-if="articInfo !== null">{{ articInfo.articleLikes }}</span>
       </a>
     </p>
-    <p class="con_info">
+    <p class="con_info" v-if="articInfo !== null">
       <b>简介</b>
       {{ articInfo.articleDesc }}
     </p>
@@ -20,6 +24,7 @@
       <div class="articleDetail" ref="article">
         <!-- preview-class 为主题的样式类名，例如vuepress就是vuepress-markdown-body -->
         <v-md-preview-html
+          v-if="articInfo !== null"
           :html="articInfo.contentHtml"
           preview-class="vuepress-markdown-body"
         ></v-md-preview-html>
@@ -74,6 +79,351 @@
       </div>
       <el-divider />
       <div style="padding-top: 20px">
+        <div class="commentList comment" id="commentList">
+          <li>
+            <div class="comment-body" id="comment-97">
+              <div class="comment-user-img">
+                <img
+                  src="http://q1.qlogo.cn/g?b=qq&amp;nk=1234567891&amp;s=100"
+                  onerror="this.src='/blog/img/user-default.png'"
+                />
+              </div>
+              <div class="comment-info">
+                <div class="comment-top">
+                  <span class="comment-nickname">
+                    <a href="javascript:void(0)">QWERTY</a>
+                  </span>
+                  <span class="comment-time">2022-10-19 15:51:54 </span>
+                </div>
+                <div class="comment-content">
+                  <div class="comment-parent">
+                    <div class="comment-parent-user">
+                      <a
+                        class="comment-link"
+                        data-link="comment-89"
+                        @click="linkComment($event)"
+                        >@1111</a
+                      >
+                    </div>
+                    <div class="comment-parent-content">
+                      4444444444444444444444
+                    </div>
+                  </div>
+                  0000000000000000
+                </div>
+                <div class="comment-footer">
+                  <span class="reply mr-5" reply-id="97">回复</span>
+                  <span class="cancel-reply mr-5" style="display: none"
+                    >取消回复</span
+                  >
+                  <svg-icon icon="dianzan" style="margin-left: 3px"></svg-icon>
+                  <span biz-id="97">0</span>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="comment-body" id="comment-96">
+              <div class="comment-user-img">
+                <img
+                  src="http://q1.qlogo.cn/g?b=qq&amp;nk=1234567891&amp;s=100"
+                  onerror="this.src='/blog/img/user-default.png'"
+                />
+              </div>
+              <div class="comment-info">
+                <div class="comment-top">
+                  <span class="comment-nickname">
+                    <a href="javascript:void(0)">QWERTY</a>
+                  </span>
+                  <span class="comment-time">2022-10-19 11:35:35 </span>
+                </div>
+                <div class="comment-content">99999999999999999999999999</div>
+                <div class="comment-footer">
+                  <span class="reply mr-5" reply-id="96">回复</span>
+                  <span class="cancel-reply mr-5" style="display: none"
+                    >取消回复</span
+                  >
+                  <span
+                    class="comment-support pointer fa fa-thumbs-o-up"
+                    biz-id="96"
+                    >0</span
+                  >
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="comment-body" id="comment-95">
+              <div class="comment-user-img">
+                <img
+                  src="http://q1.qlogo.cn/g?b=qq&amp;nk=1234567891&amp;s=100"
+                  onerror="this.src='/blog/img/user-default.png'"
+                />
+              </div>
+              <div class="comment-info">
+                <div class="comment-top">
+                  <span class="comment-nickname">
+                    <a href="javascript:void(0)">QWERTY</a>
+                  </span>
+                  <span class="comment-time">2022-10-19 11:35:31 </span>
+                </div>
+                <div class="comment-content">88888888888888888888</div>
+                <div class="comment-footer">
+                  <span class="reply mr-5" reply-id="95">回复</span>
+                  <span class="cancel-reply mr-5" style="display: none"
+                    >取消回复</span
+                  >
+                  <span
+                    class="comment-support pointer fa fa-thumbs-o-up"
+                    biz-id="95"
+                    >0</span
+                  >
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="comment-body" id="comment-94">
+              <div class="comment-user-img">
+                <img
+                  src="http://q1.qlogo.cn/g?b=qq&amp;nk=1234567891&amp;s=100"
+                  onerror="this.src='/blog/img/user-default.png'"
+                />
+              </div>
+              <div class="comment-info">
+                <div class="comment-top">
+                  <span class="comment-nickname">
+                    <a href="javascript:void(0)">QWERTY</a>
+                  </span>
+                  <span class="comment-time">2022-10-19 11:35:13 </span>
+                </div>
+                <div class="comment-content">pppppppppppppppppppppppppp</div>
+                <div class="comment-footer">
+                  <span class="reply mr-5" reply-id="94">回复</span>
+                  <span class="cancel-reply mr-5" style="display: none"
+                    >取消回复</span
+                  >
+                  <span
+                    class="comment-support pointer fa fa-thumbs-o-up"
+                    biz-id="94"
+                    >0</span
+                  >
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="comment-body" id="comment-93">
+              <div class="comment-user-img">
+                <img
+                  src="http://q1.qlogo.cn/g?b=qq&amp;nk=1234567891&amp;s=100"
+                  onerror="this.src='/blog/img/user-default.png'"
+                />
+              </div>
+              <div class="comment-info">
+                <div class="comment-top">
+                  <span class="comment-nickname">
+                    <a href="javascript:void(0)">QWERTY</a>
+                  </span>
+                  <span class="comment-time">2022-10-19 11:35:06 </span>
+                </div>
+                <div class="comment-content">yyyyyyyyyyyyyy</div>
+                <div class="comment-footer">
+                  <span class="reply mr-5" reply-id="93">回复</span>
+                  <span class="cancel-reply mr-5" style="display: none"
+                    >取消回复</span
+                  >
+                  <span
+                    class="comment-support pointer fa fa-thumbs-o-up"
+                    biz-id="93"
+                    >0</span
+                  >
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="comment-body" id="comment-92">
+              <div class="comment-user-img">
+                <img
+                  src="http://q1.qlogo.cn/g?b=qq&amp;nk=1234567891&amp;s=100"
+                  onerror="this.src='/blog/img/user-default.png'"
+                />
+              </div>
+              <div class="comment-info">
+                <div class="comment-top">
+                  <span class="comment-nickname">
+                    <a href="javascript:void(0)">QWERTY</a>
+                  </span>
+                  <span class="comment-time">2022-10-19 11:34:51 </span>
+                </div>
+                <div class="comment-content">
+                  <div class="comment-parent">
+                    <div class="comment-parent-user">
+                      <a class="comment-link" data-link="comment-91">@QWERTY</a>
+                    </div>
+                    <div class="comment-parent-content">tttttttttttttttt</div>
+                  </div>
+                  uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+                </div>
+                <div class="comment-footer">
+                  <span class="reply mr-5" reply-id="92">回复</span>
+                  <span class="cancel-reply mr-5" style="display: none"
+                    >取消回复</span
+                  >
+                  <span
+                    class="comment-support pointer fa fa-thumbs-o-up"
+                    biz-id="92"
+                    >2</span
+                  >
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="comment-body" id="comment-91">
+              <div class="comment-user-img">
+                <img
+                  src="http://q1.qlogo.cn/g?b=qq&amp;nk=1234567891&amp;s=100"
+                  onerror="this.src='/blog/img/user-default.png'"
+                />
+              </div>
+              <div class="comment-info">
+                <div class="comment-top">
+                  <span class="comment-nickname">
+                    <a href="javascript:void(0)">QWERTY</a>
+                  </span>
+                  <span class="comment-time">2022-10-19 11:34:38 </span>
+                </div>
+                <div class="comment-content">
+                  <div class="comment-parent">
+                    <div class="comment-parent-user">
+                      <a class="comment-link" data-link="comment-90">@QWERTY</a>
+                    </div>
+                    <div class="comment-parent-content">
+                      eeeeeeeeeeeeeeeeeee
+                    </div>
+                  </div>
+                  tttttttttttttttt
+                </div>
+                <div class="comment-footer">
+                  <span class="reply mr-5" reply-id="91">回复</span>
+                  <span class="cancel-reply mr-5" style="display: none"
+                    >取消回复</span
+                  >
+                  <span
+                    class="comment-support pointer fa fa-thumbs-o-up"
+                    biz-id="91"
+                    >0</span
+                  >
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="comment-body" id="comment-90">
+              <div class="comment-user-img">
+                <img
+                  src="http://q1.qlogo.cn/g?b=qq&amp;nk=1234567891&amp;s=100"
+                  onerror="this.src='/blog/img/user-default.png'"
+                />
+              </div>
+              <div class="comment-info">
+                <div class="comment-top">
+                  <span class="comment-nickname">
+                    <a href="javascript:void(0)">QWERTY</a>
+                  </span>
+                  <span class="comment-time">2022-10-19 11:29:35 </span>
+                </div>
+                <div class="comment-content">eeeeeeeeeeeeeeeeeee</div>
+                <div class="comment-footer">
+                  <span class="reply mr-5" reply-id="90">回复</span>
+                  <span class="cancel-reply mr-5" style="display: none"
+                    >取消回复</span
+                  >
+                  <span
+                    class="comment-support pointer fa fa-thumbs-o-up"
+                    biz-id="90"
+                    >1</span
+                  >
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="comment-body" id="comment-89">
+              <div class="comment-user-img">
+                <img
+                  src="http://q1.qlogo.cn/g?b=qq&amp;nk=1234567890&amp;s=100"
+                  onerror="this.src='/blog/img/user-default.png'"
+                />
+              </div>
+              <div class="comment-info">
+                <div class="comment-top">
+                  <span class="comment-nickname">
+                    <a href="javascript:void(0)">1111</a>
+                  </span>
+                  <span class="comment-time">2022-10-19 11:26:52 </span>
+                </div>
+                <div class="comment-content">4444444444444444444444</div>
+                <div class="comment-footer">
+                  <span class="reply mr-5" reply-id="89">回复</span>
+                  <span class="cancel-reply mr-5" style="display: none"
+                    >取消回复</span
+                  >
+                  <span
+                    class="comment-support pointer fa fa-thumbs-o-up"
+                    biz-id="89"
+                    >2</span
+                  >
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="comment-body" id="comment-88">
+              <div class="comment-user-img">
+                <img
+                  src="http://q1.qlogo.cn/g?b=qq&amp;nk=1234567890&amp;s=100"
+                  onerror="this.src='/blog/img/user-default.png'"
+                />
+              </div>
+              <div class="comment-info">
+                <div class="comment-top">
+                  <span class="comment-nickname">
+                    <a href="javascript:void(0)">1111</a>
+                  </span>
+                  <span class="comment-time">2022-10-19 11:26:18 </span>
+                </div>
+                <div class="comment-content">
+                  <div class="comment-parent">
+                    <div class="comment-parent-user">
+                      <a class="comment-link" data-link="comment-87">@1111</a>
+                    </div>
+                    <div class="comment-parent-content">
+                      2222222222222222222222
+                    </div>
+                  </div>
+                  333333333333333333333
+                </div>
+                <div class="comment-footer">
+                  <span class="reply mr-5" reply-id="88">回复</span>
+                  <span class="cancel-reply mr-5" style="display: none"
+                    >取消回复</span
+                  >
+                  <span
+                    class="comment-support pointer fa fa-thumbs-o-up"
+                    biz-id="88"
+                    >2</span
+                  >
+                </div>
+              </div>
+            </div>
+          </li>
+          <div id="comment-more" data-page="2" class="comment-more">
+            加载更多
+          </div>
+        </div>
         <div class="no-comment">暂无评论，快来占领宝座</div>
       </div>
     </div>
@@ -140,7 +490,7 @@ const watchArticleSize = () => {
 
 const route = useRoute()
 
-const articInfo = ref([])
+const articInfo = ref(null)
 const initArticle = async () => {
   const res = await articleDetails(route.params.articleId)
   articInfo.value = res.result
@@ -152,6 +502,12 @@ const initArticle = async () => {
 }
 
 initArticle()
+
+const linkComment = (event) => {
+  const linkId = event.target.getAttribute('data-link')
+  const target = document.getElementById(linkId)
+  target.scrollIntoView()
+}
 </script>
 <style lang="scss" scoped>
 .svg-container {
@@ -292,8 +648,8 @@ initArticle()
   background-color: #444;
 }
 
-.commentGrid {
-  margin-bottom: 20px;
+.commentGrid .commentList {
+  padding-top: 20px;
 }
 ::v-deep .el-input {
   width: 31.5%;
@@ -304,6 +660,7 @@ initArticle()
   background: #f6f6f6;
   padding: 10px 15px;
 }
+.comment-more,
 .no-comment {
   padding: 5px;
   text-align: center;
@@ -311,6 +668,58 @@ initArticle()
   color: #bbb;
   border-radius: 4px;
   font: 15px 'Microsoft YaHei', Arial, Helvetica, sans-serif;
+}
+ul,
+li {
+  list-style: none;
+}
+.comment li {
+  padding: 10px 0;
+  border-bottom: 1px dashed #e5e5e5;
+}
+.comment-body .comment-user-img {
+  float: left;
+}
+.comment-body .comment-user-img > img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+}
+.comment-body .comment-info {
+  margin-left: 55px;
+}
+.comment-body .comment-info .comment-time {
+  float: right;
+  color: #c0c0c0;
+}
+.comment-body .comment-info .comment-content {
+  color: #566573;
+  margin-top: 5px;
+}
+.comment-body .comment-info .comment-footer {
+  color: #999;
+  text-align: right;
+}
+.comment-body .comment-info .reply,
+.comment-body .comment-info .cancel-reply {
+  cursor: pointer;
+}
+.comment-body .comment-parent .comment-parent-content {
+  padding: 5px 10px;
+  background: #eeeeee;
+  border-radius: 4px;
+  margin: 5px 0;
+}
+a,
+button,
+input,
+textarea {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+  text-decoration: none;
+}
+a {
+  text-decoration: none;
+  color: #333;
 }
 
 .articleDetail p {

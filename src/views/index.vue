@@ -106,8 +106,14 @@
         :key="article.id"
       >
         <el-card shadow="hover">
-          <div style="width: 30%; float: left">
+          <div class="blogpic">
+            <i
+              ><a href="JavaScript:void(0)" @click="showArticle(article.id)">{{
+                article.navName
+              }}</a></i
+            >
             <a href="JavaScript:void(0)" @click="showArticle(article.id)">
+              <el-skeleton-item variant="image" style="width: 100%" />
               <img :src="article.articlePic" class="image" />
             </a>
           </div>
@@ -178,6 +184,8 @@ const nextSjPage = (event) => {
   // event.currentTarget 当前绑定事件的元素
   // event.currentTarget.innerHTML 当前绑定事件的元素的html
   // event.currentTarget.innerText 当前绑定事件的元素的文本
+  // event.target.getAttribute('class') 获取当前元素的属性
+  // event.target.parentNode.getAttribute('class') 获取当前元素父元素的属性
   if (sjArticlePage.value !== null && sjArticlePage.value.hasNext) {
     current += 1
     initTjArticle()
@@ -471,5 +479,29 @@ a.viewmore {
   background: #12b7de;
   color: #fff;
   border-radius: 3px;
+}
+
+.blogpic {
+  float: left;
+  width: 23.2%;
+  margin-right: 20px;
+  display: block;
+  overflow: hidden;
+  border-radius: 3px;
+  position: relative;
+}
+.blogpic i {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  font-style: normal;
+  padding: 3px 5px;
+  background: rgba(18, 182, 221, 0.8);
+  font-size: 14px;
+}
+.blogpic i a {
+  color: #fff;
 }
 </style>

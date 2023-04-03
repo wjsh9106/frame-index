@@ -14,7 +14,7 @@
         <span class="blogpic imgscale">
           <i
             ><a href="JavaScript:void(0)" @click="showArticle(article.id)">{{
-              route.query.navTitle
+              store.getters.headerMenuActiveName
             }}</a></i
           >
           <a
@@ -26,14 +26,16 @@
             <img class="lazy" :src="article.articlePic" alt="" />
           </a>
         </span>
-        <p class="blogtext">{{ article.articleDesc }}</p>
+        <p class="blogtext" style="min-height: 65px">
+          {{ article.articleDesc }}
+        </p>
         <div class="bloginfo">
           <svg-icon icon="shijian" class="svg-container"></svg-icon>
           <span>{{ article.updateTime.substring(0, 10) }}</span>
           <svg-icon icon="browse" class="svg-container"></svg-icon>
-          <span>16</span>
+          <span>{{ article.articleViews }}</span>
           <svg-icon icon="aixin" class="svg-container"></svg-icon>
-          <span>0</span>
+          <span>{{ article.articleLikes }}</span>
         </div>
         <a
           href="JavaScript:void(0)"
@@ -87,7 +89,7 @@ const page = ref({
 const showArticle = (id) => {
   router.push({
     name: 'article',
-    params: { articleId: id, nav: route.query.navTitle }
+    params: { articleId: id }
   })
 }
 
